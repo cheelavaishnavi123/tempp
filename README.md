@@ -261,7 +261,102 @@ Now output will be: HospitalMgmtSystem.war.
 Do you want me to continue with *Q3: Git & GitHub Integration with Maven Project (30M)* next?
 
 
+7. Add the central dependency of Java Servlet API - 4.0.0-b01 to your existing project. Check and complete pom.xml file and run it. – 2M
 
+Answer:
+
+To add Java Servlet API dependency in your pom.xml:
+
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>4.0.0-b01</version>
+    <scope>provided</scope>
+</dependency>
+
+
+scope: provided means the servlet container (like Tomcat) will provide this dependency at runtime.
+
+8. A developer removes the <dependencies> section completely. Will Maven still build the project? What issues might occur during testing? – 2M
+
+Answer:
+
+Maven will fail to build if essential dependencies (e.g., JUnit, Spring) are not present.
+
+Removing <dependencies> removes all third-party library references.
+
+Compilation errors will occur for missing classes.
+
+Testing will fail if test frameworks (like JUnit) aren't found.
+
+9. Failed to execute goal ... maven-compiler-plugin:3.1:compile ... Compilation failure ... No compiler is provided in this environment. Perhaps you are running on a JRE rather than a JDK? Identify the error? – 2M
+
+Answer:
+
+Error: Maven requires a JDK (Java Development Kit) to compile code.
+
+If only JRE (Java Runtime Environment) is installed, there's no compiler (javac), leading to this error.
+
+Fix:
+
+Install a JDK.
+
+Ensure the JAVA_HOME environment variable points to the JDK.
+
+10. In build, it is having <finalName>localhost:8080/FoodSystem</finalName>, is it correct? If not, how can you fix it? – 2M
+
+Answer:
+
+Incorrect. The <finalName> tag should only define the filename of the generated artifact (e.g., WAR/JAR), not a URL.
+
+Fix:
+
+<finalName>FoodSystem</finalName>
+
+
+URL like localhost:8080/FoodSystem is a deployment target, not a filename.
+
+11. Your project is meant to deploy on Tomcat, but <packaging>jar</packaging> is like this in pom.xml. How do you solve it? – 2M
+
+Answer:
+
+Issue: Tomcat is a servlet container; it requires WAR files, not JARs.
+
+Fix:
+Change the packaging to war in pom.xml:
+
+<packaging>war</packaging>
+
+12. In the <url> tag, written <url>http://maven.java.org</url>. Will Maven accept this? What is the correct purpose of the <url> element in pom.xml? – 3M
+
+Answer:
+
+Yes, Maven accepts it syntactically, but it won’t affect the build unless used in a plugin or profile.
+
+<url> in pom.xml is informational only—it specifies the project's homepage or documentation.
+
+Correct example:
+
+<url>https://github.com/yourusername/yourproject</url>
+
+13. Check the complete pom.xml and push into the GitHub of your account. – 3M
+
+Answer:
+
+Steps to follow:
+
+Check pom.xml:
+
+Ensure it includes all required sections: groupId, artifactId, version, dependencies, build, etc.
+
+Git Commands:
+
+git init
+git add pom.xml
+git commit -m "Add pom.xml"
+git branch -M main
+git remote add origin https://github.com/yourusername/yourrepo.git
+git push -u origin main
 
 
 
